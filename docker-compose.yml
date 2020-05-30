@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+
+  userme-demo-api:
+    build: .
+    image: flaviostutz/userme-demo-api
+    ports:
+      - "2000:2000"
+    restart: always
+    environment:
+      - LOG_LEVEL=debug
+      - BASE_SERVER_URL_FOR_LOCATIONS=http://localhost:2000/
+    secrets:
+      - jwt-verify-key
+
+secrets:
+  jwt-verify-key:
+    file: ./test-pub-key.pem
+
