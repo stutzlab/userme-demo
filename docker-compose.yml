@@ -10,11 +10,48 @@ services:
     restart: always
     environment:
       - LOG_LEVEL=debug
+      - CORS_ALLOWED_ORIGINS=*
       - BASE_SERVER_URL_FOR_LOCATIONS=http://localhost:2000/
     secrets:
       - jwt-verify-key
 
+  userme:
+    image: stutzlab/userme:1.0.1
+    ports:
+      - "6000:6000"
+    restart: always
+    environment:
+      - LOG_LEVEL=debug
+      - CORS_ALLOWED_ORIGINS=*
+      - DB_DIALECT=sqlite3
+      - MAIL_SMTP_HOST=mailslurper
+      - MAIL_SMTP_PORT=2500
+      - MAIL_SMTP_USER=test
+      - MAIL_SMTP_PASS=test
+      - MAIL_FROM_NAME=Berimbal
+      - MAIL_FROM_ADDRESS=test@test.com
+      - MAIL_ACTIVATION_SUBJECT=Activate your account at Berimbau.com!
+      - MAIL_ACTIVATION_HTML=<b>Hi DISPLAY_NAME</b>, <p> <a href=https://test.com/activate?t=ACTIVATION_TOKEN>Click here to complete your registration</a><br>Be welcome!</p> <p>-Test Team.</p>
+      - MAIL_PASSWORD_RESET_SUBJECT=Password reset requested at Berimbau.com
+      - MAIL_PASSWORD_RESET_HTML=<b>Hi DISPLAY_NAME</b>, <p> <a href=https://test.com/reset-password?t=PASSWORD_RESET_TOKEN>Click here to reset your password</a></p><p>-Test Team.</p>
+      - MAIL_TOKENS_FOR_TESTS=true
+      - ACCOUNT_ACTIVATION_METHOD=mail
+      - JWT_SIGNING_METHOD=ES256
+    secrets:
+      - jwt-signing-key
+
+  mailslurper:
+    image: marcopas/docker-mailslurper
+    ports:
+      - "8080:8080"
+      - "8085:8085"
+      - "2500:2500"
+    restart: always
+
 secrets:
+  jwt-signing-key:
+    file: ./test-key.pem
+
   jwt-verify-key:
     file: ./test-pub-key.pem
 
