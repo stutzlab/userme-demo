@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 
+	jwtparser "github.com/flaviostutz/gin-jwt-parser"
 	cors "github.com/itsjamie/gin-cors"
-	// jwtparser "github.com/stutzlab/gin-jwt-parser"
 )
 
 type HTTPServer struct {
@@ -29,7 +29,7 @@ func NewHTTPServer() *HTTPServer {
 		ValidateHeaders: false,
 	}))
 
-	router.Use(Middleware(Config{
+	router.Use(jwtparser.Middleware(jwtparser.Config{
 		FromBearer:       "Authorization",
 		FromCookie:       "jwt",
 		FromQuery:        "t",
