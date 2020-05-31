@@ -30,6 +30,8 @@ func NewHTTPServer() *HTTPServer {
 	}))
 
 	router.Use(jwtparser.Middleware(jwtparser.Config{
+		RequiredIssuer:   "Berimbal",
+		RequiredType:     "access",
 		FromBearer:       "Authorization",
 		FromCookie:       "jwt",
 		FromQuery:        "t",
