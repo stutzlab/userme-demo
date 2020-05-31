@@ -7,9 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 
-	// uuid "github.com/satori/go.uuid"
-
 	cors "github.com/itsjamie/gin-cors"
+	// jwtparser "github.com/stutzlab/gin-jwt-parser"
 )
 
 type HTTPServer struct {
@@ -28,6 +27,14 @@ func NewHTTPServer() *HTTPServer {
 		MaxAge:          24 * 3600 * time.Second,
 		Credentials:     false,
 		ValidateHeaders: false,
+	}))
+
+	router.Use(Middleware(Config{
+		FromBearer:       "Authorization",
+		FromCookie:       "jwt",
+		FromQuery:        "t",
+		JWTSigningMethod: "ES256",
+		JWTVerifyKeyFile: opt.jwtSigningKeyFile,
 	}))
 
 	h := &HTTPServer{server: &http.Server{

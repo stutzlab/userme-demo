@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strings"
 
@@ -20,9 +18,16 @@ func createTODO() func(*gin.Context) {
 		email := strings.ToLower(c.Param("email"))
 		logrus.Debugf("createTODO email=%s", email)
 
+		scope, _ := c.Get("scope")
+		logrus.Debugf("JWT scope = %s", scope)
+
+		sub, _ := c.Get("sub")
+		logrus.Debugf("JWT sub = %s", sub)
+
 		m := make(map[string]string)
-		data, _ := ioutil.ReadAll(c.Request.Body)
-		err := json.Unmarshal(data, &m)
+		err := c.BindJSON(&m)
+		// data, _ := ioutil.ReadAll(c.Request.Body)
+		// err := json.Unmarshal(data, &m)
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("Couldn't parse body contents. err=%s", err)})
 			return

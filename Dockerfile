@@ -1,6 +1,8 @@
 FROM golang:1.14.3-alpine3.11 AS BUILD
 
-WORKDIR /userme-demo-api
+RUN apk add build-base
+
+WORKDIR /app
 ADD /go.mod /app
 ADD /go.sum /app
 RUN go mod download

@@ -3,10 +3,7 @@ package main
 import (
 	"flag"
 	"os"
-	"strings"
 
-	jwt "github.com/dgrijalva/jwt-go"
-	utils "github.com/flaviostutz/go-utils"
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 )
@@ -17,7 +14,6 @@ type options struct {
 	corsAllowedOrigins string
 	jwtSigningMethod   string
 	jwtSigningKeyFile  string
-	jwtPublicKey       interface{}
 
 	baseURL    string
 	sqliteFile string
@@ -62,28 +58,6 @@ func main() {
 
 		sqliteFile: "/demo.db",
 	}
-
-	sm := jwt.GetSigningMethod(opt.jwtSigningMethod)
-	if sm == nil {
-		logrus.Errorf("Unsupported JWT signing method %s", opt.jwtSigningMethod)
-		os.Exit(1)
-	}
-
-	logrus.Infof("Loading JWT public key")
-
-	logrus.Debugf("JWT signing method: %s", opt.jwtSigningMethod)
-	if strings.HasPrefix(opt.jwtSigningMethod, "RS") || strings.HasPrefix(opt.jwtSigningMethod, "ES") || strings.HasPrefix(opt.jwtSigningMethod, "HS") {
-		pubk, err := utils.ParseKeyFromPEM(opt.jwtSigningKeyFile, false)
-		if err != nil {
-			logrus.Errorf("Failed to parse PEM public key. err=%s", err)
-			os.Exit(1)
-		}
-		opt.jwtPublicKey = pubk
-	} else {
-		logrus.Errorf("Unsupported signing method %s", opt.jwtSigningMethod)
-		os.Exit(1)
-	}
-	logrus.Debugf("JWT key loaded")
 
 	db0, err0 := initDB()
 	if err0 != nil {
