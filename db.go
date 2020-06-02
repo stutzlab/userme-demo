@@ -9,8 +9,8 @@ import (
 //TODO as in database
 type TODO struct {
 	gorm.Model
-	Email string `gorm:"size:60; not null"`
-	Title string `gorm:"size:255; not null"`
+	Email string `gorm:"size:60; not null" json:"email"`
+	Title string `gorm:"size:255; not null" json:"title"`
 }
 
 func initDB() (*gorm.DB, error) {

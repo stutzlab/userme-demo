@@ -16,7 +16,7 @@ See more at http://github.com/stutzlab/userme
 
 * Demo TODO application API is listening at http://localhost:2000/
 
-* Userme API is listening at http://localhost:2000/
+* Userme API is listening at http://localhost:7000/
 
 * Run the Demo UI at http://github.com/stutzlab/userme-demo-ui
 

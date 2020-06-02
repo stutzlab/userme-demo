@@ -56,7 +56,7 @@ func main() {
 		jwtSigningKeyFile:  *jwtSigningKeyFile0,
 		baseURL:            *baseURL0,
 
-		sqliteFile: "/demo.db",
+		sqliteFile: "/data/demo.db",
 	}
 
 	db0, err0 := initDB()

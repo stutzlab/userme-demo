@@ -20,6 +20,8 @@ github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 h1:Yzb9+7DP
 github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5/go.mod h1:a2zkGnVExMxdzMo3M0Hi/3sEU+cWnZpSni0O6/Yb/P0=
 github.com/flaviostutz/gin-jwt-parser v0.0.2 h1:lZNIflp1DvxkTR9mem9+twRjLOoAxTBuZpYeOM35Vbk=
 github.com/flaviostutz/gin-jwt-parser v0.0.2/go.mod h1:o1ueSk+S63JPHgaJ5h3D8INN4jtOcSP7cVBEYKhOd3w=
+github.com/flaviostutz/gin-jwt-parser v1.0.0 h1:L+8jdJvvwaKsMhixL/R/XeXPiI7YMtPJRlXc/xhX3n0=
+github.com/flaviostutz/gin-jwt-parser v1.0.0/go.mod h1:o1ueSk+S63JPHgaJ5h3D8INN4jtOcSP7cVBEYKhOd3w=
 github.com/flaviostutz/go-utils v0.0.1 h1:zhIOVGxlhGyQQXw/rhL9FmrONgEWAlf+c2pa5b5gm6g=
 github.com/flaviostutz/go-utils v0.0.1/go.mod h1:BZ4y0WrBqF1zpShzduRI6tDMvL4hhJi+oMZQNd+6OEc=
 github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE=
