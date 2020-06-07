@@ -83,11 +83,19 @@ func listTODO() func(*gin.Context) {
 }
 
 func verifySelfPermit(c *gin.Context, resourceOwner string) error {
-	scope, _ := c.Get("scope")
-	logrus.Debugf("JWT scope = %s", scope)
+	scopes0, _ := c.Get("scope")
+	scopes00 := scopes0.([]interface{})
 	sub, _ := c.Get("sub")
 	logrus.Debugf("JWT sub = %s", sub)
-	if scope != "basic" || sub != resourceOwner {
+	scopeOk := false
+	for _, s := range scopes00 {
+		sc := s.(string)
+		logrus.Debugf("Found JWT scope %s", sc)
+		if sc == "basic" {
+			scopeOk = true
+		}
+	}
+	if !scopeOk || sub != resourceOwner {
 		return fmt.Errorf("User %s not authorized to access resource from %s", sub, resourceOwner)
 	}
 	return nil

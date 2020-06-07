@@ -69,7 +69,7 @@ func main() {
 
 	err := NewHTTPServer().Start()
 	if err != nil {
-		logrus.Warnf("Error starting server. err=%s", err)
+		logrus.Warnf("Error starting server. err0=%s", err)
 		os.Exit(1)
 	}
 }

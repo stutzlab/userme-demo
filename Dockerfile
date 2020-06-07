@@ -2,14 +2,20 @@ FROM golang:1.14.3-alpine3.11 AS BUILD
 
 RUN apk add build-base
 
+ENV GO111MODULE 'on'
+
 WORKDIR /app
+
+#cache modules
 ADD /go.mod /app
 ADD /go.sum /app
 RUN go mod download
+#cache build sqlite because it is too sloooow
+RUN go install github.com/mattn/go-sqlite3
 
 #now build source code
 ADD / /app
-RUN go build -o /go/bin/userme-demo-api
+RUN go build -x -o /go/bin/userme-demo-api
 
 
 FROM golang:1.14.3-alpine3.11
