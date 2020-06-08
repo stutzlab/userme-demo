@@ -8,4 +8,5 @@ userme-demo-api \
      --jwt-signing-key-file=$JWT_SIGNING_KEY_FILE \
      --jwt-signing-method=$JWT_SIGNING_METHOD \
      --base-url=$BASE_SERVER_URL_FOR_LOCATIONS
+     
 

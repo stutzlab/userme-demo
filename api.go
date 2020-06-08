@@ -24,7 +24,7 @@ func NewHTTPServer() *HTTPServer {
 		Methods:         "GET, POST",
 		RequestHeaders:  "Authorization, Origin, Content-Type, Referer, User-Agent",
 		ExposedHeaders:  "",
-		MaxAge:          24 * 3600 * time.Second,
+		MaxAge:          1 * 3600 * time.Second,
 		Credentials:     false,
 		ValidateHeaders: false,
 	}))
