@@ -40,9 +40,9 @@ services:
       - ACCOUNT_ACTIVATION_METHOD=mail
       - JWT_SIGNING_METHOD=ES256
       - FACEBOOK_CLIENT_ID=884133135440365
-      - FACEBOOK_CLIENT_SECRET=517881352bedda63648cb8ac89e337d2
+      - FACEBOOK_CLIENT_SECRET=
       - GOOGLE_CLIENT_ID=339086941381-61h3t55u99n9rt0arqmu655cvs3gk3ol.apps.googleusercontent.com
-      - GOOGLE_CLIENT_SECRET=5sIa66LTHTWMUrT-sblhxsoI
+      - GOOGLE_CLIENT_SECRET=
     volumes: 
       - userme-data:/data
     secrets:
